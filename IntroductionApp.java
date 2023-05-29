@@ -25,10 +25,24 @@ public class IntroductionApp{
 		int[] status=makeStatus(seed,maxArr);
 		System.out.println("初期ステータスが決定しました");
 		showStatus(status,params);
+		System.out.printf("種族を選んでください %s>",arrToString(races));
+		int race=sc.nextInt();
+		System.out.println(races[race]+"のボーナスが適用されました!");
+		raceBonus(status,raceMatrix[race]);
+		showStatus(status,params);
+		System.out.printf("職業を選んでください %s>",arrToString(classes));
+		int cls=sc.nextInt();
+		System.out.println(classes[cls]+"のボーナスが適用されました!");
+		classBonus(status,classMatrix[race]);
+		showStatus(status,params);
+		System.out.println("***作成成功!***");
+		System.out.printf("私は%sの%s、%sです。%n",classes[cls],races[race],name);
+		System.out.println("能力値("+sumStatus(status)+")");
+				for(int i=0;i<status.length;i++){
+					System.out.printf("%s:%d%n",params[i],status[i]);
+				}
+				System.out.println("です。今後ともよろしく...");
 	}
-
-
-
 
 	//名前をもとにシード値を作成するメソッド
 	static int calcSeed(String name){
@@ -85,8 +99,16 @@ public class IntroductionApp{
 		System.out.println("["+str+"]");
 	}
 
-
-	//能力値を降順に並び変えるメソッド
-
+	//配列から文字列を表示させるメソッド
+	static String arrToString(String[] arr){
+		String str="";
+		for(int i=0;i<arr.length;i++){
+		//str+=i+"..."+arr[i]+",";
+		str+=String.format("%d...%s,",i,arr[i]);
+		}
+		//最後の,削除
+		str=str.substring(0,str.length()-1);
+		return str;
+	}
 
 }
