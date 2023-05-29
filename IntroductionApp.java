@@ -37,7 +37,8 @@ public class IntroductionApp{
 		showStatus(status,params);
 		System.out.println("***作成成功!***");
 		System.out.printf("私は%sの%s、%sです。%n",classes[cls],races[race],name);
-		System.out.println("能力値("+sumStatus(status)+")");
+		System.out.println("能力値("+sumStatus(status)+")を高い順に並べると");
+		sortStatus(status,params);
 				for(int i=0;i<status.length;i++){
 					System.out.printf("%s:%d%n",params[i],status[i]);
 				}
@@ -109,6 +110,22 @@ public class IntroductionApp{
 		//最後の,削除
 		str=str.substring(0,str.length()-1);
 		return str;
+	}
+
+	//
+	static void sortStatus(int[] status,String[] params){
+		for(int i=0;i<status.length-1;i++){
+			for(int j=i+1;j<status.length;j++){
+				if(status[i]<status[j]){
+					int t1=status[i];
+					status[i]=status[j];
+					status[j]=t1;
+					String t2=params[i];
+					params[i]=params[j];
+					params[j]=t2;
+				}
+			}
+		}
 	}
 
 }
